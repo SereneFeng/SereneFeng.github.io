@@ -234,39 +234,26 @@
                   <i class="fa fa-caret-down"></i>
               </button>
               <div class="dropdown-content">
-                  <a href="extras.html">Sign-up</a>
-                  <a href="signin.html" >Login</a>
+                  <a href="extras.html">statistics</a>
+                  <a href="resources.html" >resources</a>
               </div>
           </div>
         </div>
       </nav>
-          </div>
-
-  <div id="graphic">
-    <div class="googly">
-      <div id="div1">
-        <h2>   </h2>
-        <h2>   </h2>
-        <h2>   </h2>
-        <h2> Approximately <strong> 82.4 million </strong> people worldwide were forcibly displaced in 2020 with <strong>4.1 million</strong> asylum seekers.</h2>
-      </div>
-      <div id="div2">
-        <h2> Refugee children are <strong>five times </strong>as likely to be out of school than their non-refugee peers.</h2>
-        <p></p>
-      </div>
-      <div id="div4">
-        <h2>Factors such as lack of transportation and identification, financial issues, and the presence of language and cultural barriers prevent refugee children from readily accessing education.</h2>
-      </div>
-      <div id="div6">
-        <h2>Only <strong>3%</strong> of refugees enroll in college or university compared to the world average of <strong>37%.</strong> </h2>
-      </div>
-      <div id="div8">
-<h1 id = "what1" style="color:black;">Something needs to be done, </h1>
-<h1 id = "what2" style="color:#4fc1a7;">and <i> you can help. <i> </h1>
-
-      </div>
-
-    </div>
+      <h2 style = "padding-left:40px; font-size: 30px"> <b>Resources </b></h2>
+      <div style = "padding-left:40px; font-size: 20px">
+<br>
+There are a number of ways you can help. Some good organizations that you can make a donation to are included below, where your donations would directly contribute and support refugee families.
+<br><br>
+        <a style = "padding-left:40px;" href="https://donate.unhcr.org/int/en/general">  - UNHCR </a>
+<br>
+        <a style = "padding-left:40px;" href="https://www.rescue.org/">  - Rescue </a>
+        <br>
+        <a style = "padding-left:40px;" href=" https://cirict.org/donate/">  - Cirict</a>
+        <br>
+        <br>
+Furthermore, there are things you can do to reach out to local organizations to better support these communities. 
+</div>
 
   <!-- svg -->
   <div class="fixed">
@@ -297,144 +284,7 @@
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
   }
-		//svg
-    let svg = d3.select("svg");
 
-
-    //svg width and height
-    svg.attr('width',500)
-        .attr('height',300)
-
-
-    //set up grid spacing
-    let spacing = 40;
-    let rows = 10;
-    let column = 10;
-    let randnum = (min,max) => Math.round( Math.random() * (max-min) + min );
-
-
-
-    //Create an array of objects
-    let our_data = d3.range(50).map(i =>
-    ({ 'phd': i < 5 ? '6-12' : '66%',
-        'city': i < 3 ? '13-17' : '32%',
-        'age': i<1? 'Undergrads':'4%',
-        'other': i<4 ? 'sample a':'sample 2',
-    }));
-
-
-    //create group and join our data to that group
-    let group = svg.selectAll('g')
-      .data(our_data)
-      .enter()
-      .append("g")
-
-
-    //create rectangles
-    let rects = group.append("rect")
-
-    // square grid
-    let grid = () =>{
-      rects
-        .transition()
-        .delay((d, i) => 10 * i)
-        .duration(600)
-        .ease("elastic")
-        .attr("width", 20)
-        .attr("height", 20)
-        .attr("rx", 5)
-        .attr("ry", 5)
-        .attr("x", (d, i) => i % column * spacing)
-        .attr("y", (d, i) => Math.floor(i / 10) % rows * spacing)
-        .attr("fill", (d, i) => (i < 50 ? "#4fc1a7":"#0e2f44"))
-        .attr("opacity", "1")
-    }
-
-    //circle grid
-    let grid2 = () =>{
-      rects
-        .transition()
-        .delay((d, i) => 10 * i)
-        .duration(600)
-        .ease("elastic")
-        .attr("width", 20)
-        .attr("height", 20)
-        .attr("rx", "50%")
-        .attr("ry", "50%")
-        .attr("x", (d, i) => i % column * spacing)
-        .attr("y", (d, i) => Math.floor(i / 10) % rows * spacing)
-        .attr("fill", (d, i) => (i < 9 ?  "#4fc1a7":"#014D65"))
-        .attr("opacity", (d,i)=> i < 50 ? 1 : 0 )
-    }
-
-
-    let divide = () =>{
-       rects
-         .transition()
-         .delay((d, i) => 10 * i)
-         .duration(600)
-         .ease("elastic")
-         .attr("width", 70)
-         .attr("height", 10)
-         .attr("rx", 0)
-         .attr("ry", 0)
-         .attr("x", (d, i) => d['phd'] == "ios" ? randnum(30, 150) :  randnum(30, 350))
-         .attr("y", (d, i) => i * 20)
-         .attr("fill", (d, i) => d['phd'] == "ios" ? "#4fc1a7":"#014D65")
-         .attr("opacity", (d,i)=> i < 12 ? 1 : 0 )//only show 12 people
-       }
-
-    let barChart = () =>{
-      rects
-        .transition()
-        .delay((d, i) => 10 * i)
-        .duration(600)
-        .ease("elastic")
-        .attr("width", 70)
-        .attr("height", 10)
-        .attr("rx", 0)
-        .attr("ry", 0)
-        .attr("x", (d, i) => d['phd'] == "ios" ? randnum(30, 150) :  randnum(30, 350))
-        .attr("y", (d, i) => i * 20)
-        .attr("fill", (d, i) => (i < 1 ?  "#FF0000":"#4fc1a7"))
-        .attr("opacity", (d,i)=> i < 12 ? 1 : 0 )//only show 12 people
-      }
-
-    let blankSpace =()=>{
-      rects
-        .transition()
-        .delay((d, i) => 10 * i)
-        .duration(500)
-        .ease("elastic")
-        .attr("fill", (d, i) => (i < 1 ?  "#FF0000":"#4fc1a7"))
-        .attr("opacity", (d,i)=> i < 5 ? 0 : 0 )//only show 12 people
-
-      }
-
-
-
-    //waypoints scroll constructor
-    function scroll(n, offset, func1, func2){
-      return new Waypoint({
-        element: document.getElementById(n),
-        handler: function(direction) {
-           direction == 'down' ? func1() : func2();
-        },
-        //start 75% from the top of the div
-        offset : offset
-      });
-    };
-
-    //triger these functions on page scroll
-    new scroll('div2', '75%', grid2, grid);
-    new scroll('div4', '75%', divide, grid2);
-    new scroll('div6', '75%', barChart, divide);
-    new scroll('div8', '100%', blankSpace, barChart);
-
-
-
-    //start grid on page load
-    grid();
 
   </script>
 </body>
